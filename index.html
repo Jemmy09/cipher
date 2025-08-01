@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cipher Tool</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header, .footer {
+      background-color: #282c34;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group, .result-group, .solution-group {
+      margin: 1.5rem 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin-top: 0.2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    .buttons button,
+    .result-group button,
+    .solution-group button {
+      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .buttons button:hover,
+    .result-group button:hover,
+    .solution-group button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .buttons button,
+      .result-group button,
+      .solution-group button {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      textarea {
+        height: 100px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      input, select, textarea {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1, .footer p {
+        font-size: 1rem;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      input, select, textarea {
+        font-size: 0.95rem;
+      }
+
+      .buttons button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<header class="header">
+  <h1>Cipher System Tool</h1>
+</header>
+
+<body>
+  <!-- Header (loaded via fetch) -->
+  <div id="header"></div>
+
+  <main>
+    <section class="container">
+      <h1>Cipher Encryption & Decryption</h1>
+
+      <div class="form-group">
+        <label for="cipher">Choose Cipher:</label>
+        <select id="cipher">
+          <option value="caesar">Caesar Cipher</option>
+          <option value="atbash">Atbash Cipher</option>
+          <option value="monoalphabetic">Monoalphabetic Cipher</option>
+          <option value="polyalphabetic">Polyalphabetic Cipher</option>
+          <option value="railfence">Rail Fence Cipher</option>
+          <option value="columnar">Columnar Transposition Cipher</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="key">Key / Shift:</label>
+        <input type="text" id="key" placeholder="e.g., 3 or keyword" />
+      </div>
+
+      <div class="form-group">
+        <label for="inputText">Input Text:</label>
+        <textarea id="inputText" placeholder="Enter text here..."></textarea>
+      </div>
+
+      <div class="buttons">
+        <button onclick="process('encrypt')">Encrypt</button>
+        <button onclick="process('decrypt')">Decrypt</button>
+      </div>
+
+      <div class="result-group">
+        <h2>Result</h2>
+        <textarea id="resultText" readonly></textarea>
+        <button onclick="copyToClipboard('resultText')">Copy Result</button>
+      </div>
+
+      <div class="solution-group">
+        <h2>Key / Alphabet Mapping</h2>
+        <textarea id="solutionText" readonly></textarea>
+        <button onclick="copyToClipboard('solutionText')">Copy Mapping</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (loaded via fetch) -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="caesar.js"></script>
+  <script src="atbash.js"></script>
+  <script src="monoalphabetic.js"></script>
+  <script src="polyalphabetic.js"></script>
+  <script src="railfence.js"></script>
+  <script src="columnar.js"></script>
+
+<footer class="footer">
+  <p>&copy; 2025 All Rights Reserved</p>
+  <p>Developer: Jemmy Francisco</p>
+  <p>
+    <a href="https://www.messenger.com/t/100021339227533" >
+       
+      Message me on Messenger
+    </a>
+  </p>
+</footer>
+
+</body>
+</html>
